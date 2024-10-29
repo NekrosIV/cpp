@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.cpp                                      :+:      :+:    :+:   */
+/*   Contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kasingh <kasingh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/22 18:17:13 by kasingh           #+#    #+#             */
-/*   Updated: 2024/10/29 17:20:25 by kasingh          ###   ########.fr       */
+/*   Created: 2024/10/22 18:19:22 by kasingh           #+#    #+#             */
+/*   Updated: 2024/10/29 17:15:30 by kasingh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.hpp"
-#include <iostream>
+#pragma once
 #include <string>
 
-PhoneBook::PhoneBook()
+class Contact
 {
-	this->contactCount = 0;
-}
+  private:
+	std::string firstName;
+	std::string lastName;
+	std::string nickName;
+	std::string darkSecret;
+	std::string phoneNumber;
 
-int	main(void)
-{
-	return (0);
-}
+  public:
+};

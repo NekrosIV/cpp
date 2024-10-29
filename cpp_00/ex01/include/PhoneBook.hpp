@@ -6,13 +6,21 @@
 /*   By: kasingh <kasingh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 18:19:22 by kasingh           #+#    #+#             */
-/*   Updated: 2024/10/22 18:20:08 by kasingh          ###   ########.fr       */
+/*   Updated: 2024/10/29 17:17:30 by kasingh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_HPP
-#define PHONEBOOK_HPP
+#pragma once
+#include "Contact.hpp"
 
-#include <iostream>
+class PhoneBook
+{
+  private:
+	Contact contacts[8];
+	int contactCount;
 
-#endif
+  public:
+	PhoneBook();
+	void addContact(const Contact &newContact);
+	void displayContacts() const;
+};
