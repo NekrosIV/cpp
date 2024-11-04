@@ -6,7 +6,7 @@
 /*   By: kasingh <kasingh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 18:19:22 by kasingh           #+#    #+#             */
-/*   Updated: 2024/10/29 17:17:30 by kasingh          ###   ########.fr       */
+/*   Updated: 2024/11/01 14:49:13 by kasingh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ class PhoneBook
 
   public:
 	PhoneBook();
-	void addContact(const Contact &newContact);
+	void addContact();
 	void displayContacts() const;
+	std::string formatField(std::string field) const;
 };

@@ -6,7 +6,9 @@ SRCS_DIR := ./src
 OBJS_DIR := ./objs
 
 HEADERS := ./include
-FILES := PhoneBook.cpp
+FILES := PhoneBook.cpp \
+		 Contact.cpp \
+		 main.cpp 
 
 SRCS := $(addprefix $(SRCS_DIR)/, $(FILES))
 OBJS := $(addprefix $(OBJS_DIR)/, $(FILES:.cpp=.o))
