@@ -6,7 +6,7 @@
 /*   By: kasingh <kasingh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 12:42:18 by kasingh           #+#    #+#             */
-/*   Updated: 2024/11/05 15:27:45 by kasingh          ###   ########.fr       */
+/*   Updated: 2024/11/05 15:30:53 by kasingh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void Account::_displayTimestamp(void)
 {
 	char	buffer[20];
 
-	std::time_t t = std::time(0);
-	std::tm *now = std::localtime(&t);
+	std::time_t time = std::time(0);
+	std::tm *now = std::localtime(&time);
 	std::strftime(buffer, sizeof(buffer), "[%Y%m%d_%H%M%S]", now);
 	std::cout << buffer << " ";
 }
@@ -60,10 +60,12 @@ int Account::getTotalAmount(void)
 {
 	return (_totalAmount);
 }
+
 int Account::getNbDeposits(void)
 {
 	return (_totalNbDeposits);
 }
+
 int Account::getNbWithdrawals(void)
 {
 	return (_totalNbWithdrawals);
@@ -105,6 +107,7 @@ void Account::makeDeposit(int deposit)
 	std::cout << "amount:" << _amount << ";"
 				<< "nb_deposits:" << _nbDeposits << std::endl;
 }
+
 bool Account::makeWithdrawal(int withdrawal)
 {
 	_displayTimestamp();
