@@ -6,18 +6,18 @@
 /*   By: kasingh <kasingh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 15:17:16 by kasingh           #+#    #+#             */
-/*   Updated: 2024/11/09 16:27:47 by kasingh          ###   ########.fr       */
+/*   Updated: 2024/11/13 15:03:56 by kasingh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cerrno>
-#include <cstring>
 #include <fstream>
 #include <iostream>
 #include <string>
 
 int	main(int ac, char **av)
 {
+	size_t	pos;
+
 	std::string filename;
 	std::string src;
 	std::string dest;
@@ -37,9 +37,28 @@ int	main(int ac, char **av)
 	std::ifstream inputFile(filename.c_str());
 	if (!inputFile.is_open())
 	{
-		std::cerr << "Erreur : impossible d'ouvrir le fichier '" << filename << "'." << std::endl;
-		std::cerr << "Raison : " << std::strerror(errno) << std::endl;
+		std::perror(filename.c_str());
 		return (1);
+	}
+	std::ofstream outputFile((filename + ".replace").c_str());
+	if (!outputFile.is_open())
+	{
+		std::perror((filename + ".replace").c_str());
+		return (1);
+	}
+	std::string line;
+	while (std::getline(inputFile, line))
+	{
+		std::string modifiedLine;
+		pos = 0;
+		while ((pos = line.find(src, pos)) != std::string::npos)
+		{
+			modifiedLine += line.substr(0, pos) + dest;
+			line = line.substr(pos + src.length());
+			pos = 0;
+		}
+		modifiedLine += line;
+		outputFile << modifiedLine << std::endl;
 	}
 	return (0);
 }
