@@ -6,7 +6,12 @@ SRCS_DIR := ./src
 OBJS_DIR := ./objs
 
 HEADERS := ./include
-FILES := main.cpp 
+FILES := AMateria.cpp \
+			Character.cpp \
+			Cure.cpp \
+			Ice.cpp \
+			MateriaSource.cpp \
+			main.cpp 
 			
 
 SRCS := $(addprefix $(SRCS_DIR)/, $(FILES))

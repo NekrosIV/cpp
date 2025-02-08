@@ -6,7 +6,7 @@
 /*   By: kasingh <kasingh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 15:51:56 by kasingh           #+#    #+#             */
-/*   Updated: 2025/02/03 18:06:46 by kasingh          ###   ########.fr       */
+/*   Updated: 2025/02/05 14:50:04 by kasingh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,9 @@ AMateria::~AMateria()
 std::string const &AMateria::getType() const
 {
 	return (type);
+}
+
+void AMateria::use(ICharacter &target)
+{
+	std::cout << "* AMateria [" << type << "] is used on " << target.getName() << " but has no effect! *" << std::endl;
 }

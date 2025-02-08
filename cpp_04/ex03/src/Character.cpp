@@ -6,11 +6,12 @@
 /*   By: kasingh <kasingh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 18:13:48 by kasingh           #+#    #+#             */
-/*   Updated: 2025/02/03 18:23:43 by kasingh          ###   ########.fr       */
+/*   Updated: 2025/02/07 14:40:44 by kasingh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Character.hpp"
+#include "color.h"
 
 Character::Character(std::string const &name) : name(name)
 {
@@ -31,6 +32,7 @@ Character::Character(Character const &other) : name(other.name)
 
 Character &Character::operator=(Character const &other)
 {
+
 	if (this != &other)
 	{
 		name = other.name;
@@ -48,13 +50,51 @@ Character &Character::operator=(Character const &other)
 
 Character::~Character()
 {
-    for (int i = 0; i < 4; i++)
-        delete inventory[i];
-    std::cout << "Character " << name << " destroyed!" << std::endl;
+	for (int i = 0; i < 4; i++)
+		delete inventory[i];
+	std::cout << "Character " << name << " destroyed!" << std::endl;
 }
 
-std::string const &Character::getName() const 
+std::string const &Character::getName() const
 {
-    return (name); 
+	return (name);
 }
 
+void Character::equip(AMateria *m)
+{
+	if (!m)
+	{
+		std::cout << BRED <<"Could not equip item, inexistant type" << RESET << std::endl;
+		return ;
+	}
+	for (int i = 0; i < 4; i++)
+	{
+		if (!inventory[i])
+		{
+			inventory[i] = m;
+			std::cout << name << " equipped " << m->getType() << "!" << std::endl;
+			return ;
+		}
+		if (inventory[i] == m)
+        {
+            std::cout << BRED << name << " already has this materia equipped!"<< RESET << std::endl;
+            return ;
+        }
+	}
+	std::cout << BYELLOW << name << " has no space to equip " << m->getType() << "!" << RESET << std::endl;
+}
+
+void Character::unequip(int idx)
+{
+	if (idx >= 0 && idx < 4 && inventory[idx])
+	{
+		std::cout << BYELLOW << name << " unequipped " << inventory[idx]->getType() << "!" << RESET << std::endl;
+		inventory[idx] = NULL;
+	}
+}
+
+void Character::use(int idx, ICharacter &target)
+{
+	if (idx >= 0 && idx < 4 && inventory[idx])
+		inventory[idx]->use(target);
+}
