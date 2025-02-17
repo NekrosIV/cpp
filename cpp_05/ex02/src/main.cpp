@@ -6,7 +6,7 @@
 /*   By: kasingh <kasingh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 17:22:07 by kasingh           #+#    #+#             */
-/*   Updated: 2025/02/11 17:37:40 by kasingh          ###   ########.fr       */
+/*   Updated: 2025/02/12 13:11:27 by kasingh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int main()
 {
     std::cout << BMAGENTA << "\n===== TESTING SHRUBBERY CREATION FORM =====" << RESET << std::endl;
 
-    ShrubberyCreationForm tree("Garden");
+    ShrubberyCreationForm tree("Aramaki");
     Bureaucrat bob("Bob", 140);
     Bureaucrat alice("Alice", 1);
 

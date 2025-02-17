@@ -1,4 +1,4 @@
-NAME :=  Bureaucrat
+NAME :=  real_type
 CC := c++
 CFLAGS :=  -Wall -Wextra -Werror -Wshadow -std=c++98
 
@@ -7,7 +7,7 @@ OBJS_DIR := ./objs
 
 HEADERS := ./include
 FILES := main.cpp \
-			Bureaucrat.cpp
+			Base.cpp
 			
 
 SRCS := $(addprefix $(SRCS_DIR)/, $(FILES))

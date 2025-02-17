@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
+/*   Base.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kasingh <kasingh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/14 14:10:29 by kasingh           #+#    #+#             */
-/*   Updated: 2025/02/13 12:20:41 by kasingh          ###   ########.fr       */
+/*   Created: 2025/02/17 11:11:31 by kasingh           #+#    #+#             */
+/*   Updated: 2025/02/17 11:12:49 by kasingh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include "Base.hpp"
+#include "A.hpp"
+#include "B.hpp"
+#include "C.hpp"
 
-#include "ClapTrap.hpp"
 
-class ScavTrap : virtual public ClapTrap
+Base::~Base()
 {
-public:
-    ScavTrap();
-    ScavTrap(const std::string name);
-    ScavTrap(const ScavTrap &other);
-    ScavTrap &operator=(const ScavTrap &other);
-    ~ScavTrap();
-
-    void attack(const std::string &target);
-    void guardGate();
-};
-
+}

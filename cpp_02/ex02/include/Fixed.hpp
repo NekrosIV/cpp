@@ -6,7 +6,7 @@
 /*   By: kasingh <kasingh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 13:59:32 by kasingh           #+#    #+#             */
-/*   Updated: 2024/12/04 17:53:31 by kasingh          ###   ########.fr       */
+/*   Updated: 2024/12/12 15:18:09 by kasingh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ class Fixed
 	static Fixed &max(Fixed &a, Fixed &b);
 	static const Fixed &max(const Fixed &a, const Fixed &b);
 
+	Fixed fromRawBits(const int raw);
 	~Fixed();
 };
 

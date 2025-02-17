@@ -6,26 +6,23 @@
 /*   By: kasingh <kasingh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 10:47:10 by kasingh           #+#    #+#             */
-/*   Updated: 2025/02/14 14:31:57 by kasingh          ###   ########.fr       */
+/*   Updated: 2025/02/16 17:26:12 by kasingh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
 
-ScalarConverter::ScalarConverter()
-{
-}
-
-ScalarConverter::~ScalarConverter()
-{
-}
 bool ScalarConverter::isChar(const std::string &input)
 {
 	return (input.length() == 1 && !std::isdigit(input[0]));
 }
+
 bool ScalarConverter::isFloat(const std::string &input)
 {
-	return ((input.find('f') != std::string::npos || input.find('F') != std::string::npos)&& input.find('.') != std::string::npos && isDouble(input.substr(0, input.length() - 1)));
+	return ((input.find('f') != std::string::npos
+			|| input.find('F') != std::string::npos)
+		&& input.find('.') != std::string::npos && isDouble(input.substr(0,
+				input.length() - 1)));
 }
 bool ScalarConverter::isDouble(const std::string &input)
 {
@@ -37,7 +34,8 @@ bool ScalarConverter::isDouble(const std::string &input)
 
 void ScalarConverter::printChar(double value)
 {
-	if (value < std::numeric_limits<char>::min() || value > std::numeric_limits<char>::max() || std::isnan(value))
+	if (value < std::numeric_limits<char>::min()
+		|| value > std::numeric_limits<char>::max() || std::isnan(value))
 		std::cout << "char: impossible" << std::endl;
 	else if (!std::isprint(static_cast<char>(value)))
 		std::cout << "char: Non displayable" << std::endl;
@@ -47,7 +45,8 @@ void ScalarConverter::printChar(double value)
 
 void ScalarConverter::printInt(double value)
 {
-	if (value < std::numeric_limits<int>::min() || value > std::numeric_limits<int>::max() || std::isnan(value))
+	if (value < std::numeric_limits<int>::min()
+		|| value > std::numeric_limits<int>::max() || std::isnan(value))
 		std::cout << "int: impossible" << std::endl;
 	else
 		std::cout << "int: " << static_cast<int>(value) << std::endl;
@@ -83,28 +82,29 @@ void ScalarConverter::convert(const std::string &input)
 {
 	std::cout << "Received input: " << input << std::endl;
 
-    if (isChar(input)) {
-        char c = input[0];
-        std::cout << "char: '" << c << "'" << std::endl;
-        std::cout << "int: " << static_cast<int>(c) << std::endl;
-        std::cout << "float: " << static_cast<float>(c) << ".0f" << std::endl;
-        std::cout << "double: " << static_cast<double>(c) << ".0" << std::endl;
-        return;
-    }
+	if (isChar(input))
+	{
+		char c = input[0];
+		std::cout << "char: '" << c << "'" << std::endl;
+		std::cout << "int: " << static_cast<int>(c) << std::endl;
+		std::cout << "float: " << static_cast<float>(c) << ".0f" << std::endl;
+		std::cout << "double: " << static_cast<double>(c) << ".0" << std::endl;
+		return ;
+	}
 
-    
-    char* endPtr;
-    double value = std::strtod(input.c_str(), &endPtr);
-    if (*endPtr != '\0' && !isFloat(input)) {
-        std::cout << "char: impossible" << std::endl;
-        std::cout << "int: impossible" << std::endl;
-        std::cout << "float: impossible" << std::endl;
-        std::cout << "double: impossible" << std::endl;
-        return;
-    }
-	
-    printChar(value);
-    printInt(value);
-    printFloat(value);
-    printDouble(value);
+	char *endPtr;
+	double value = std::strtod(input.c_str(), &endPtr);
+	if (*endPtr != '\0' && !isFloat(input))
+	{
+		std::cout << "char: impossible" << std::endl;
+		std::cout << "int: impossible" << std::endl;
+		std::cout << "float: impossible" << std::endl;
+		std::cout << "double: impossible" << std::endl;
+		return ;
+	}
+
+	printChar(value);
+	printInt(value);
+	printFloat(value);
+	printDouble(value);
 }

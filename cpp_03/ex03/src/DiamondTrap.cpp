@@ -6,7 +6,7 @@
 /*   By: kasingh <kasingh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 14:26:30 by kasingh           #+#    #+#             */
-/*   Updated: 2024/12/15 15:32:31 by kasingh          ###   ########.fr       */
+/*   Updated: 2025/02/13 12:19:50 by kasingh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "color.h"
 #include <iostream>
 
-DiamondTrap::DiamondTrap() : ClapTrap("Default_clap_name"), FragTrap(), ScavTrap()
+DiamondTrap::DiamondTrap() : ClapTrap("Default_clap_name"), ScavTrap(),  FragTrap()
 {
 	name = "Default";
 	hitPoint = FragTrap::hitPoint;
@@ -24,7 +24,7 @@ DiamondTrap::DiamondTrap() : ClapTrap("Default_clap_name"), FragTrap(), ScavTrap
 }
 
 DiamondTrap::DiamondTrap(const std::string name) : ClapTrap(name
-	+ "_clap_name"), FragTrap(), ScavTrap()
+	+ "_clap_name"), ScavTrap(), FragTrap()
 {
 	this->name = name;
 	hitPoint = FragTrap::hitPoint;
@@ -34,7 +34,7 @@ DiamondTrap::DiamondTrap(const std::string name) : ClapTrap(name
 }
 
 DiamondTrap::DiamondTrap(const DiamondTrap &other) : ClapTrap(other),
-	FragTrap(other), ScavTrap(other)
+	 ScavTrap(other), FragTrap(other)
 {
 	*this = other;
 	std::cout << BYELLOW << "DiamondTrap copy constructor called" << RESET << std::endl;

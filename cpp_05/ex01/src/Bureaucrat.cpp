@@ -6,7 +6,7 @@
 /*   By: kasingh <kasingh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 17:19:09 by kasingh           #+#    #+#             */
-/*   Updated: 2025/02/11 13:19:27 by kasingh          ###   ########.fr       */
+/*   Updated: 2025/02/11 14:23:18 by kasingh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,19 @@ void Bureaucrat::decrementGrade()
 	if (_grade + 1 > lowestGrade)
 		throw Bureaucrat::GradeTooLowException();
 	_grade++;
+}
+
+void Bureaucrat::signForm(Form &form)
+{
+	try
+	{
+		form.beSigned(*this);
+        std::cout << getName() << " signed " << form.getName() << std::endl;
+	}
+	catch (const std::exception &e)
+	{
+		std::cerr << getName() << " couldn't sign " << form.getName() << " because " << e.what() << std::endl;
+	}
 }
 
 const char *Bureaucrat::GradeTooHighException::what() const throw()

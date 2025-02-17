@@ -6,7 +6,7 @@
 /*   By: kasingh <kasingh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 16:28:51 by kasingh           #+#    #+#             */
-/*   Updated: 2024/12/07 15:02:38 by kasingh          ###   ########.fr       */
+/*   Updated: 2024/12/12 16:03:01 by kasingh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,8 @@ bool bsp(const Point &A, const Point &B, const Point &C, const Point &P)
     Fixed areaPBC = getSignedArea(P, B, C).abs();
     Fixed areaPAC = getSignedArea(A, P, C).abs();
     Fixed areaPAB = getSignedArea(A, B, P).abs();
-    return (originalArea == (areaPBC + areaPAC + areaPAB));
+    if(areaPBC == Fixed(0) || areaPAC == Fixed(0) || areaPAB == Fixed (0))
+        return(false);
+    else
+        return (originalArea == (areaPBC + areaPAC + areaPAB));
 }

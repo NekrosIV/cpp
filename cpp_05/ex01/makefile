@@ -1,4 +1,4 @@
-NAME :=  Bureaucrat
+NAME :=  Form
 CC := c++
 CFLAGS :=  -Wall -Wextra -Werror -Wshadow -std=c++98
 
@@ -7,7 +7,8 @@ OBJS_DIR := ./objs
 
 HEADERS := ./include
 FILES := main.cpp \
-			Bureaucrat.cpp
+			Bureaucrat.cpp \
+			Form.cpp
 			
 
 SRCS := $(addprefix $(SRCS_DIR)/, $(FILES))

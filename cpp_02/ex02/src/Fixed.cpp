@@ -6,7 +6,7 @@
 /*   By: kasingh <kasingh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 13:44:53 by kasingh           #+#    #+#             */
-/*   Updated: 2024/12/05 14:43:43 by kasingh          ###   ########.fr       */
+/*   Updated: 2024/12/12 16:33:07 by kasingh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,13 +105,36 @@ bool Fixed::operator!=(const Fixed &other) const
 
 Fixed Fixed::operator+(const Fixed &other) const
 {
-	return (Fixed(this->toFloat() + other.toFloat()));
+	Fixed res;
+	res.setRawBits(this->fixedValue + other.fixedValue);
+	return (res);
 }
-
 Fixed Fixed::operator-(const Fixed &other) const
 {
-	return (Fixed(this->toFloat() - other.toFloat()));
+	Fixed res;
+	res.setRawBits(this->fixedValue - other.fixedValue);
+	return (res);
 }
+
+// Fixed Fixed::operator*(const Fixed &other) const
+// {
+//     long long temp = static_cast<long long>(this->fixedValue) * other.fixedValue;
+//     Fixed res;
+//     res.fixedValue = static_cast<int>(temp >> fractionalBits);
+//     return res;
+// }
+// Fixed Fixed::operator/(const Fixed &other) const
+// {
+//     if (other.fixedValue == 0)
+//     {
+//         std::cerr << "Division by zero" << std::endl;
+//         return Fixed(0);
+//     }
+//     long long temp = (static_cast<long long>(this->fixedValue) << fractionalBits) / other.fixedValue;
+//     Fixed res;
+//     res.fixedValue = static_cast<int>(temp);
+//     return res;
+// }
 
 Fixed Fixed::operator*(const Fixed &other) const
 {
@@ -120,6 +143,11 @@ Fixed Fixed::operator*(const Fixed &other) const
 
 Fixed Fixed::operator/(const Fixed &other) const
 {
+	if (other.fixedValue == 0)
+	{
+		std::cerr << "Division by zero" << std::endl;
+		return (Fixed(0));
+	}
 	return (Fixed(this->toFloat() / other.toFloat()));
 }
 

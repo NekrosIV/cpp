@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
+/*   Serializer.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kasingh <kasingh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/14 14:10:29 by kasingh           #+#    #+#             */
-/*   Updated: 2025/02/13 12:20:41 by kasingh          ###   ########.fr       */
+/*   Created: 2025/02/16 17:25:53 by kasingh           #+#    #+#             */
+/*   Updated: 2025/02/16 17:27:03 by kasingh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include "Serializer.hpp"
 
-#include "ClapTrap.hpp"
-
-class ScavTrap : virtual public ClapTrap
+uintptr_t Serializer::serialize(Data *ptr)
 {
-public:
-    ScavTrap();
-    ScavTrap(const std::string name);
-    ScavTrap(const ScavTrap &other);
-    ScavTrap &operator=(const ScavTrap &other);
-    ~ScavTrap();
+	return (reinterpret_cast<uintptr_t>(ptr));
+}
 
-    void attack(const std::string &target);
-    void guardGate();
-};
-
+Data *Serializer::deserialize(uintptr_t raw)
+{
+	return (reinterpret_cast<Data *>(raw));
+}
