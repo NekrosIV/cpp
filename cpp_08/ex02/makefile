@@ -1,4 +1,4 @@
-NAME :=  easyfind
+NAME :=  MutantStack
 CC := c++
 CFLAGS :=  -Wall -Wextra -Werror -Wshadow -std=c++98
 

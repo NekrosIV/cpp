@@ -6,86 +6,99 @@
 /*   By: kasingh <kasingh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:19:46 by kasingh           #+#    #+#             */
-/*   Updated: 2025/02/19 16:34:05 by kasingh          ###   ########.fr       */
+/*   Updated: 2025/02/23 15:34:21 by kasingh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "color.hpp"
-#include "easyfind.hpp"
-
-void testVector() {
-    std::cout << BBLUE << "🟢 Testing with std::vector<int>...\n" << RESET;
-    
-    std::vector<int> vec;
-    for (int i = 1; i <= 5; i++)
-        vec.push_back(i * 10); // {10, 20, 30, 40, 50}
-
-    try {
-        std::cout << BGREEN << "Searching for 30... " << RESET;
-        std::vector<int>::iterator it = easyfind(vec, 30);
-        std::cout << BMAGENTA << "Found: " << *it << RESET << std::endl;
-    } catch (const std::exception& e) {
-        std::cerr << BRED << "Error: " << e.what() << RESET << std::endl;
-    }
-
-    try {
-        std::cout << BYELLOW << "Searching for 100... " << RESET;
-        std::vector<int>::iterator it = easyfind(vec, 100); // 🚨 Erreur attendue
-        std::cout << BMAGENTA << "Found: " << *it << RESET << std::endl;
-    } catch (const std::exception& e) {
-        std::cerr << BRED << "Error: " << e.what() << RESET << std::endl;
-    }
-}
-
-void testList() {
-    std::cout << BBLUE << "🟢 Testing with std::list<int>...\n" << RESET;
-    
-    std::list<int> lst;
-    for (int i = 5; i <= 25; i += 5)
-        lst.push_back(i); // {5, 10, 15, 20, 25}
-
-    try {
-        std::cout << BGREEN << "Searching for 15... " << RESET;
-        std::list<int>::iterator it = easyfind(lst, 15);
-        std::cout << BMAGENTA << "Found: " << *it << RESET << std::endl;
-    } catch (const std::exception& e) {
-        std::cerr << BRED << "Error: " << e.what() << RESET << std::endl;
-    }
-
-    try {
-        std::cout << BYELLOW << "Searching for 50... " << RESET;
-        std::list<int>::iterator it = easyfind(lst, 50); // 🚨 Erreur attendue
-        std::cout << BMAGENTA << "Found: " << *it << RESET << std::endl;
-    } catch (const std::exception& e) {
-        std::cerr << BRED << "Error: " << e.what() << RESET << std::endl;
-    }
-}
-
-void testEmptyContainer() {
-    std::cout << BBLUE << "🟢 Testing with an empty std::vector<int>...\n" << RESET;
-    
-    std::vector<int> emptyVec;
-
-    try {
-        std::cout << BYELLOW << "Searching for 10 in empty vector... " << RESET;
-        std::vector<int>::iterator it = easyfind(emptyVec, 10); // 🚨 Erreur attendue
-        std::cout << BMAGENTA << "Found: " << *it << RESET << std::endl;
-    } catch (const std::exception& e) {
-        std::cerr << BRED << "Error: " << e.what() << RESET << std::endl;
-    }
-}
+#include "MutantStack.hpp"
+#include <vector>
+#include <list>
 
 int main() {
-    std::cout << BCYAN << "🔹 Running tests on different containers...\n\n" << RESET;
-    
-    testVector();
+    std::cout << BCYAN << "\n=== TESTING MUTANTSTACK ===\n" << RESET << std::endl;
+
+    MutantStack<int> mstack;
+
+    std::cout << BYELLOW << "[TEST 1] Pushing elements into MutantStack" << RESET << std::endl;
+    mstack.push(5);
+    mstack.push(17);
+    mstack.push(3);
+    mstack.push(5);
+    mstack.push(737);
+    mstack.push(42);
+    mstack.push(22);
+
+    std::cout << "Stack top element: " << BWHITE << mstack.top() << RESET << std::endl;
+    mstack.pop();
+    std::cout << "New top after pop: " << BWHITE << mstack.top() << RESET << std::endl;
+    std::cout << "Stack size: " << BWHITE << mstack.size() << RESET << std::endl;
+
+    std::cout << BYELLOW << "\n[TEST 2] Iterating through MutantStack" << RESET << std::endl;
+    MutantStack<int>::iterator it = mstack.begin();
+    MutantStack<int>::iterator ite = mstack.end();
+
+    std::cout << "MutantStack elements: ";
+    while (it != ite) {
+        std::cout << BGREEN << *it << " " << RESET;
+        ++it;
+    }
     std::cout << std::endl;
 
-    testList();
+    std::cout << "\n-----------------------------\n" << std::endl;
+
+    std::cout << BCYAN << "=== COMPARING WITH OTHER CONTAINERS ===\n" << RESET << std::endl;
+
+    std::cout << BYELLOW << "[TEST 3] Using std::vector instead of MutantStack" << RESET << std::endl;
+    std::vector<int> vec;
+    vec.push_back(5);
+    vec.push_back(17);
+    vec.push_back(3);
+    vec.push_back(5);
+    vec.push_back(737);
+    vec.push_back(42);
+    vec.push_back(22);
+
+    std::cout << "Vector elements: ";
+    for (std::vector<int>::iterator vit = vec.begin(); vit != vec.end(); ++vit) {
+        std::cout << BBLUE << *vit << " " << RESET;
+    }
     std::cout << std::endl;
 
-    testEmptyContainer();
-    
-    std::cout << BCYAN << "\n✅ All tests completed!\n" << RESET;
+    std::cout << BYELLOW << "\n[TEST 4] Using std::list instead of MutantStack" << RESET << std::endl;
+    std::list<int> lst;
+    lst.push_back(5);
+    lst.push_back(17);
+    lst.push_back(3);
+    lst.push_back(5);
+    lst.push_back(737);
+    lst.push_back(42);
+    lst.push_back(22);
+
+    std::cout << "List elements: ";
+    for (std::list<int>::iterator lit = lst.begin(); lit != lst.end(); ++lit) {
+        std::cout << BMAGENTA << *lit << " " << RESET;
+    }
+    std::cout << std::endl;
+
+    std::cout << BYELLOW << "\n[TEST 5] Using std::stack (No Iterators Available)" << RESET << std::endl;
+    std::stack<int> s;
+    s.push(5);
+    s.push(17);
+    s.push(3);
+    s.push(5);
+    s.push(737);
+    s.push(42);
+    s.push(22);
+
+    std::cout << "Stack elements (LIFO order): ";
+    while (!s.empty()) {
+        std::cout << BRED << s.top() << " " << RESET;
+        s.pop();
+    }
+    std::cout << std::endl;
+
+    std::cout << BCYAN << "\n=== END OF TESTS ===\n" << RESET << std::endl;
+
     return 0;
 }
